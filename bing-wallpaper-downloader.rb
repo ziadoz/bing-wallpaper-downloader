@@ -15,11 +15,11 @@ options[:directory]  = "#{ENV['HOME']}/Pictures/Bing Wallpapers"
 OptionParser.new do |opts|
   opts.banner = "Usage: #{__FILE__} [options]"
 
-  opts.on("-m", "--market [MARKET]", "The locale to use when looking for an image.") do |market|
+  opts.on("-m", "--market [MARKET]", "The locale to use when looking for an image (e.g. en-GB).") do |market|
     options[:market] = market
   end
 
-  opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch.") do |resolution|
+  opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch (e.g. 1920x1200).") do |resolution|
     options[:resolution] = resolution
   end
 
