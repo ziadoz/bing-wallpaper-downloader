@@ -15,15 +15,15 @@ options[:directory]  = "#{ENV['HOME']}/Pictures/Bing Wallpapers"
 OptionParser.new do |opts|
   opts.banner = "Usage: #{__FILE__} [options]"
 
-  opts.on("-m", "--market [MARKET]", "The locale to use when looking for an image (e.g. en-GB).") do |market|
+  opts.on("-m", "--market [MARKET]", "The locale to use when looking for an image. Default: #{options[:market]}") do |market|
     options[:market] = market
   end
 
-  opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch (e.g. 1920x1200).") do |resolution|
+  opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch. Default: #{options[:resolution]}") do |resolution|
     options[:resolution] = resolution
   end
 
-  opts.on("-d", "--directory [DIRECTORY]", "The directory to save the wallpapers to.") do |directory|
+  opts.on("-d", "--directory [DIRECTORY]", "The directory to save the wallpapers to. Default: #{options[:directory]}") do |directory|
     options[:directory] = directory
   end  
 end.parse!
