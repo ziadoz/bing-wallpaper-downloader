@@ -8,37 +8,38 @@ require "open-uri"
 # Bing JSON API: http://stackoverflow.com/questions/10639914/is-there-a-way-to-get-bings-photo-of-the-day
 
 options = {
-  :market     => "en-US",
-  :resolution => "1920x1080",
-  :directory  => "#{ENV['HOME']}/Pictures/Bing Wallpapers",
+  :market      => "en-US",
+  :resolution  => "1920x1080",
 }
 
 OptionParser.new do |opts|
   opts.banner = "Usage: #{__FILE__} [options]"
 
-  opts.on("-m", "--market [MARKET]", "The locale to use when looking for an image. Default: #{options[:market]}") do |market|
-    options[:market] = market
+  opts.on("-d", "--destination DESTINATION", "The directory to save the wallpapers to.") do |directory|
+    options[:destination] = directory
   end
 
   opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch. Default: #{options[:resolution]}") do |resolution|
     options[:resolution] = resolution
   end
 
-  opts.on("-d", "--directory [DIRECTORY]", "The directory to save the wallpapers to. Default: #{options[:directory]}") do |directory|
-    options[:directory] = directory
+  opts.on("-m", "--market [MARKET]", "The locale to use when looking for an image. Default: #{options[:market]}") do |market|
+    options[:market] = market
   end  
 end.parse!
 
-unless /^[a-z]{2}\-[A-Z]{2}$/.match(options[:market])
-  raise OptionParser::InvalidArgument, "market: #{options[:market]}" 
+raise OptionParser::MissingArgument, "destination" if options[:destination].nil?
+
+unless FileUtils.mkdir_p(options[:destination]) && Dir.exists?(options[:destination])
+ raise OptionParser::InvalidArgument, "destination: #{options[:destination]}" 
 end
 
 unless /^\d+x\d+$/.match(options[:resolution])
   raise OptionParser::InvalidArgument, "resolution: #{options[:resolution]}" 
-end 
+end
 
-unless FileUtils.mkdir_p(options[:directory]) && Dir.exists?(options[:directory])
- raise OptionParser::InvalidArgument, "directory: #{options[:directory]}" 
+unless /^[a-z]{2}\-[A-Z]{2}$/.match(options[:market])
+  raise OptionParser::InvalidArgument, "market: #{options[:market]}" 
 end
 
 bing_json_url = URI::HTTP.build(
@@ -76,7 +77,7 @@ def download_image(source, destination)
 end
 
 image_url, date = get_latest_image(bing_json_url, options[:resolution])
-target = File.join(options[:directory], date + ".jpg")
+target = File.join(options[:destination], date + ".jpg")
 download_image(image_url, target)
 
 puts "Success: Downloaded latest Bing image to #{target}"
