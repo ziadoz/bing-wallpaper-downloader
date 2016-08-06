@@ -7,10 +7,11 @@ require "open-uri"
 
 # Bing JSON API: http://stackoverflow.com/questions/10639914/is-there-a-way-to-get-bings-photo-of-the-day
 
-options              = {}
-options[:market]     = "en-US"
-options[:resolution] = "1920x1080"
-options[:directory]  = "#{ENV['HOME']}/Pictures/Bing Wallpapers"
+options = {
+  :market     => "en-US",
+  :resolution => "1920x1080",
+  :directory  => "#{ENV['HOME']}/Pictures/Bing Wallpapers",
+}
 
 OptionParser.new do |opts|
   opts.banner = "Usage: #{__FILE__} [options]"
