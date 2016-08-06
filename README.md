@@ -2,9 +2,26 @@
 A simple script to download Bing's daily background images.
 
 # Usage
+You can run the script with the following command: 
+
 ```
-Usage: bing-wallpaper-downloader.rb [options]
-    -m, --market [MARKET]            The locale to use when looking for an image (e.g. en-GB).
-    -r, --resolution [RESOLUTION]    The resolution of image to fetch (e.g. 1920x1200).
-    -d, --directory [DIRECTORY]      The directory to save the wallpapers to.
+ruby bing-wallpaper-downloader.rb --destination=$HOME/Pictures/Bing Wallpapers
+```
+
+You can specify a specific market (locale) with the `market` argument: 
+
+```
+ruby bing-wallpaper-downloader.rb --destination=$HOME/Pictures/Bing Wallpapers --market=en-GB
+```
+
+You can specify the resolution image you want using the `resolution` argument: 
+
+```
+ruby bing-wallpaper-downloader.rb --destination=$HOME/Pictures/Bing Wallpapers --resolution=1920x1080
+```
+
+For help use the help flag: 
+
+```
+ruby bing-wallpaper-downloader.rb -h
 ```
