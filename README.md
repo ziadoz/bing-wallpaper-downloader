@@ -33,3 +33,4 @@ ruby bing-wallpaper-downloader.rb -h
 - Rename `:market` option to `:locale`.
 - Build the URI using `URI.parse(string)` instead of building objects.
 - Add ability to download multiple (adjust URL query parameters).
+- Check destination folder is writable.
