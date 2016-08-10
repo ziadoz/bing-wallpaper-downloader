@@ -23,13 +23,13 @@ module BingWallpaperDownloader
           options[:destination] = directory
         end
 
-        opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch. Default: #{options[:resolution]}") do |resolution|
-          options[:resolution] = resolution
-        end
-
         opts.on("-l", "--locale [LOCALE]", "The locale to use when looking for an image. Default: #{options[:locale]}") do |locale|
           options[:locale] = locale
         end
+
+        opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch. Default: #{options[:resolution]}") do |resolution|
+          options[:resolution] = resolution
+        end        
       end.parse(args)
 
       options
@@ -42,13 +42,13 @@ module BingWallpaperDownloader
        raise OptionParser::InvalidArgument, "destination: #{options[:destination]}"
       end
 
+      unless /^[a-z]{2}\-[A-Z]{2}$/.match(options[:locale])
+        raise OptionParser::InvalidArgument, "locale: #{options[:locale]}"
+      end
+
       unless /^\d+x\d+$/.match(options[:resolution])
         raise OptionParser::InvalidArgument, "resolution: #{options[:resolution]}"
       end
-
-      unless /^[a-z]{2}\-[A-Z]{2}$/.match(options[:locale])
-        raise OptionParser::InvalidArgument, "locale: #{options[:locale]}"
-      end      
     end
   end
 end
