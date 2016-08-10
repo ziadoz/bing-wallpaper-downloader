@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative "lib/optparser"
 require_relative "lib/downloader"
 
@@ -10,7 +12,7 @@ results = BingWallpaperDownloader::Downloader.new(
 ).download
 
 if results.any?
-  puts "Success: download #{results.length} Bing wallpapers"
+  puts "Success: Downloaded #{results.length} Bing wallpapers"
   results.each { |image| puts " - #{image}" }
 else
   abort "Error: Could not download Bing wallpapers"
