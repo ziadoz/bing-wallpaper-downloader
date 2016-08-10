@@ -35,6 +35,19 @@ For help use the help flag:
 ./bing-wallpaper-download.sh -h
 ```
 
+```
+$ ./bing-wallpaper-downloader.sh --destination=/Users/Arthur/Pictures/Wallpapers/Bing/ --total=10
+Success: Downloaded 8 Bing wallpapers
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-10.jpg
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-09.jpg
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-08.jpg
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-07.jpg
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-06.jpg
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-05.jpg
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-04.jpg
+ - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-03.jpg
+ ```
+
 ## To Do
 - Write some unit tests for the new class.
 - Check destination folder is writable.
