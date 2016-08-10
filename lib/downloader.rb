@@ -5,6 +5,8 @@ require "json"
 require "open-uri"
 
 module BingWallpaperDownloader
+  class DownloaderError < StandardError; end
+
   class Downloader
     attr_reader :destination, :locale, :resolution, :total
 
@@ -53,15 +55,21 @@ module BingWallpaperDownloader
 
     def download_images(images)
       images.collect do |image|
-        download = open(image[:url])
+        begin
+          url = image[:url].to_s.sub("1920x1080", @resolution)
+          download = open(url)
+        rescue OpenURI::HTTPError => e
+          raise DownloaderError, "No image available in #{@resolution} resolution"
+        end
+
         if download.meta["content-type"] != "image/jpeg" || download.meta["content-length"].to_i == 0
-          raise "Error: Unable to download latest Bing image"
+          raise DownloaderError, "Unable to download latest Bing image"
         end
 
         target = File.join(destination, image[:date] + ".jpg")
         bytes  = IO.copy_stream(download, target)
         if bytes != download.meta["content-length"].to_i
-          raise "Error: Unable to download latest Bing image"
+          raise DownloaderError, "Unable to copy latest Bing image"
         end
 
         target
