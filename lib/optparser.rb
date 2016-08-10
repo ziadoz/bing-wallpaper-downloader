@@ -4,6 +4,8 @@ module BingWallpaperDownloader
   class OptParser
     attr_reader :file
 
+    MAX_DAYS_BACK = 8
+
     def initialize(file)
       @file = file
     end
@@ -38,8 +40,9 @@ module BingWallpaperDownloader
           options[:resolution] = resolution
         end        
 
-        opts.on("-t", "--total [TOTAL]", "The total number of days back to get images from. Default #{options[:total]}") do |total|
+        opts.on("-t", "--total [TOTAL]", "The total number of days back to get images from. Default #{options[:total]} Maximum: #{MAX_DAYS_BACK}") do |total|
           options[:total] = total.to_i
+          options[:total] = MAX_DAYS_BACK if options[:total] > MAX_DAYS_BACK
         end
       end.parse(args)
 
