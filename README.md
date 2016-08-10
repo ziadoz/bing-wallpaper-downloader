@@ -37,7 +37,7 @@ For help use the help flag:
 
 ```
 $ ./bing-wallpaper-downloader.sh --destination=/Users/Arthur/Pictures/Wallpapers/Bing/ --total=5
-Success: Downloaded 8 Bing wallpapers
+Success: Downloaded 5 Bing wallpapers
  - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-10.jpg
  - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-09.jpg
  - /Users/Arthur/Pictures/Wallpapers/Bing/2016-08-08.jpg
