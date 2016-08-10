@@ -11,10 +11,10 @@ module BingWallpaperDownloader
     attr_reader :destination, :locale, :resolution, :total
 
     def initialize(destination, locale, resolution, total = 1)
-        @destination = destination
-        @locale      = locale
-        @resolution  = resolution
-        @total       = total
+      @destination = destination
+      @locale      = locale
+      @resolution  = resolution
+      @total       = total
     end
 
     def download
@@ -46,10 +46,10 @@ module BingWallpaperDownloader
       end
 
       images_json.collect do |image|
-          date = image["startdate"]
-          date = "#{date[0..3]}-#{date[4..5]}-#{date[6..7]}"
+        date = image["startdate"]
+        date = "#{date[0..3]}-#{date[4..5]}-#{date[6..7]}"
 
-          {:url => URI.parse("http://www.bing.com" + image["url"]), :date => date}
+        {:url => URI.parse("http://www.bing.com" + image["url"]), :date => date}
       end
     end
 
