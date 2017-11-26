@@ -29,7 +29,7 @@ module BingWallpaperDownloader
         opts.banner = "Usage: #{@file} [options]"
 
         opts.on("-d", "--destination DESTINATION", "The directory to save the wallpapers to.") do |directory|
-          options[:destination] = directory
+          options[:destination] = File.expand_path(directory)
         end
 
         opts.on("-l", "--locale [LOCALE]", "The locale to use when looking for an image. Default: #{options[:locale]}") do |locale|
@@ -38,7 +38,7 @@ module BingWallpaperDownloader
 
         opts.on("-r", "--resolution [RESOLUTION]", "The resolution of image to fetch. Default: #{options[:resolution]}") do |resolution|
           options[:resolution] = resolution
-        end        
+        end
 
         opts.on("-t", "--total [TOTAL]", "The total number of days back to get images from. Default #{options[:total]} Maximum: #{MAX_DAYS_BACK}") do |total|
           options[:total] = total.to_i
