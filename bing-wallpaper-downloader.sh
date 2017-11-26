@@ -7,7 +7,7 @@ begin
   options = BingWallpaperDownloader::OptParser.new(__FILE__).parse(ARGV)
 
   downloader = BingWallpaperDownloader::Downloader.new(options[:destination], options[:locale], options[:resolution], options[:total])
-  downloader.download
+  results    = downloader.download
 
   if results.any?
     puts "Success: Downloaded #{results.length} Bing wallpapers"
