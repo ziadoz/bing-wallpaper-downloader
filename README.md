@@ -44,7 +44,3 @@ Success: Downloaded 5 Bing wallpapers
  - /Users/Arthur/Pictures/Bing/2016-08-07.jpg
  - /Users/Arthur/Pictures/Bing/2016-08-06.jpg
  ```
-
-## To Do
-- Write some unit tests for the new class.
-- Check destination folder is writable.

@@ -52,8 +52,10 @@ module BingWallpaperDownloader
     def validate_options(options)
       raise OptionParser::MissingArgument, "The destination argument is required" if options[:destination].nil?
 
-      unless FileUtils.mkdir_p(options[:destination]) && Dir.exists?(options[:destination])
-       raise OptionParser::InvalidArgument, "The destination directory '#{options[:resolution]}' could not be created: #{options[:destination]}"
+      if Dir.exists?(options[:destination]) && ! File.writable?(options[:destination])
+        raise OptionParser::InvalidArgument, "The destination directory '#{options[:destination]}' is not writeable"
+      elsif ! Dir.exists?(options[:destination]) && ! FileUtils.mkdir_p(options[:destination])
+       raise OptionParser::InvalidArgument, "The destination directory '#{options[:destination]}' could not be created"
       end
 
       raise OptionParser::InvalidArgument, "The local argument cannot be empty" if options[:locale].empty?
